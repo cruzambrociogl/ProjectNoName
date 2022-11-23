@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
-// views import
-//import Loading from '../views/Loading'
-
+import Auth from '../views/Auth';
+import Registration from '../views/Registration';
+// import Home from '../views/Home';
 
 const Views = createSwitchNavigator({
-
+  Auth,
+  Registration
 });
 
 export default createAppContainer(Views);
