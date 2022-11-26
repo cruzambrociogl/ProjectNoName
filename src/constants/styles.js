@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 import { theme } from '../constants/theme'
-import { rgba } from '../constants/index'
 
 
 const styles = StyleSheet.create({

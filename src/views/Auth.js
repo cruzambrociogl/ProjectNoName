@@ -35,6 +35,10 @@ class Auth extends React.Component {
   }
   handleSubmit = ()=>{
     console.log("LOGINNNN")
+    var email = this.state.user['email'];
+    var password = this.state.user['password'];
+
+    login({email, password}, this.failLogin);
   }
   enableLogin = ()=>{
     const _emailField = this.emailField.current.state.isValid;
@@ -51,6 +55,7 @@ class Auth extends React.Component {
     const { navigation } = this.props;
     if(user != null){
       console.log('Inside')
+      navigation.navigate('Home')
     }
   }
   render() {

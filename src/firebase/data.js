@@ -36,3 +36,35 @@ export function signOut(onSignedOut){
   })
 }
 //END AUTH
+
+// BEGIN DATA MANAGEMENT
+export async function getRooms(roomsRetrieved){
+  console.log("getting rooms")
+  var roomsList = [];
+  var indexList = [];
+  db.collection('Rooms')
+  .get().then(snapshot => {
+    snapshot.forEach((doc) => {
+      indexList.push(doc.id)
+      roomsList.push({...doc.data(), 'id':doc.id})
+    });
+    roomsRetrieved(roomsList);
+  });
+}
+
+export async function getGames(room, gamesRetrieved){
+  console.log("getting rooms")
+  var gamesList = [];
+  var indexList = [];
+  db.collection('Rooms')
+  .doc(room["id"])
+  .collection('Games')
+  .get().then(snapshot => {
+    snapshot.forEach((doc) => {
+      indexList.push(doc.id)
+      gamesList.push({...doc.data(), 'id':doc.id})
+    });
+    gamesRetrieved(gamesList);
+  });
+}
+// END DATA MANAGEMENT
