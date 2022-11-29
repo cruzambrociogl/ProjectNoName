@@ -67,4 +67,78 @@ export async function getGames(room, gamesRetrieved){
     gamesRetrieved(gamesList);
   });
 }
+export function gameListener(callback){
+  console.log('listener')
+  db.collection('Rooms')
+  .doc('Room_1')
+  .collection('Games')
+  .doc('tic_tac_toe')
+  .onSnapshot(function (querySnapshot) {
+    console.log("Data Listened")
+    console.log(querySnapshot.data())
+    callback(querySnapshot.data());
+  })
+}
+export function cleanGame(){
+  db.collection('Rooms')
+  .doc('Room_1')
+  .collection('Games')
+  .doc('tic_tac_toe')
+  .update({
+    firstPlayer:'0',
+    moves:['0', '0', '0', '0', '0', '0', '0', '0', '0'],
+    name:"tic tac toe 1",
+    player1:["userid", '0'],
+    player2:["userid", '0']
+  })
+  .catch((error) => console.log('collection', error));
+
+}
+export function makingAMove(positions){ 
+  console.log('MOVING FF')
+  console.log(positions)
+  db.collection('Rooms')
+  .doc('Room_1')
+  .collection('Games')
+  .doc('tic_tac_toe')
+  .update({
+    moves:positions
+  }).catch((error) => console.log('collection', error));;
+}
+export function checkFirstPlayer(callback){
+  db.collection('Rooms')
+  .doc('Room_1')
+  .collection('Games')
+  .doc('tic_tac_toe')
+  .get().then(async snapshot => {
+    if (snapshot.data()['firstPlayer'] == "0"){
+      await db.collection('Rooms')
+      .doc('Room_1')
+      .collection('Games')
+      .doc('tic_tac_toe')
+      .update({
+        firstPlayer:'x',
+        player1:[auth.currentUser.uid, 'x']
+      }).catch((error) => console.log('collection', error));
+    }else {
+      await db.collection('Rooms')
+      .doc('Room_1')
+      .collection('Games')
+      .doc('tic_tac_toe')
+      .update({
+        player2:[auth.currentUser.uid, 'o']
+      }).catch((error) => console.log('collection', error));
+    }
+  }).then(async snapt =>{
+    await db.collection('Rooms')
+    .doc('Room_1')
+    .collection('Games')
+    .doc('tic_tac_toe')
+    .get().then(snap => {
+      console.log("new data")
+      snap.user_id = auth.currentUser.uid
+      callback(snap);
+    });
+  });
+}
 // END DATA MANAGEMENT

@@ -12,7 +12,7 @@ import CustomHeader from './customHeader'
 
 import { getGames } from '../firebase/data'
 
-class Home extends React.Component {
+class Games extends React.Component {
   constructor(props){
     super(props);
     this.state= {
@@ -44,7 +44,7 @@ class Home extends React.Component {
   selectedOption = (data) =>{
     const { navigation } = this.props;
     console.log('NAVIGATING')
-    navigation.navigate('Games', data)
+    navigation.navigate('GamesView', data)
   }
   render() {
     const { navigation } = this.props;
@@ -74,7 +74,7 @@ class Home extends React.Component {
                 onPress={ () => {
                   this.setState({ selectedItem: item }, ()=>this.selectedOption(item));
                 } } >
-                  {<Image source = '../assets/Icons/street.png' resizeMode='center' style={{ alignSelf:'center', ...margin(20), width:40, height:40 }} /> }
+                  {<Image source = {require('../assets/Icons/console.png')} resizeMode='center' style={{ alignSelf:'center', ...margin(20), resizeMode: 'stretch', width:40, height:40 }} /> }
                   <View style={{ width:get_widthPercentage(61) }} >
                     <Text 
                       ellipsizeMode = 'tail'
@@ -94,4 +94,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export default Games;

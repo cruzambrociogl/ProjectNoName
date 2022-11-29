@@ -69,7 +69,7 @@ class Home extends React.Component {
                 style={{ flex:0, alignSelf:"center", flexDirection:'row', ...CustomStyles.styles.itemBox, height:110, width:get_widthPercentage(90), ...margin(5) }}
                 key={ `img-${item.key}` } 
                 onPress={ () => this.selectedOption(item) } >
-                  {<Image source = '../assets/Icons/street.png' resizeMode='center' style={{ alignSelf:'center', ...margin(20), width:40, height:40 }} /> }
+                  {<Image source = {require('../assets/Icons/street.png')} resizeMode='center' style={{ alignSelf:'center', ...margin(20), resizeMode: 'stretch', width:40, height:40 }} /> }
                   <View style={{ width:get_widthPercentage(61) }} >
                     <Text 
                       ellipsizeMode = 'tail'

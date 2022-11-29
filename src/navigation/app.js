@@ -5,12 +5,14 @@ import Auth from '../views/Auth';
 import Registration from '../views/Registration';
 import Home from '../views/Home';
 import Games from '../views/Games';
+import GamesView from '../views/GameView'
 
 const Views = createSwitchNavigator({
   Auth,
   Registration,
   Home,
-  Games
+  Games,
+  GamesView
 });
 
 export default createAppContainer(Views);

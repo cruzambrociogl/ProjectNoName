@@ -16,6 +16,16 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
 });
+const images = StyleSheet.create({
+  gameImage:{
+    alignSelf:'center',
+    top: 23,
+    width:60,
+    height:60,
+    resizeMode: 'stretch',
+    justifyContent:'center'
+  }
+});
 const buttons = StyleSheet.create({
   enabled:{
     borderRadius:30, 
@@ -24,6 +34,21 @@ const buttons = StyleSheet.create({
   disabled:{
     borderRadius:30, 
     backgroundColor:theme.COLORS.secondary,
+  },
+  gameButtonsActive:{
+    flex:0.95,
+    alignSelf:"center",
+    borderRadius:20,
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+    elevation: 4,    
+    backgroundColor:'#FFFFFF',
+    borderRadius:10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
   }
 });
 const inputs = StyleSheet.create({
@@ -85,6 +110,7 @@ const inputs = StyleSheet.create({
 export var CustomStyles = {
   styles,
   inputs,
-  buttons
+  buttons,
+  images
 }
 export default { CustomStyles };
